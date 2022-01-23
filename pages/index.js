@@ -67,7 +67,7 @@ const UserImage=tw.img`h-12 w-12 rounded-full border border-gray-200 p-px`
 const ActionButtons=tw.div`flex `
 const ActionButton=tw.div`
 bg-gray-200
-m-1 h-32
+m-2 h-32
 items-center flex-col justify-center
 rounded-lg
 flex
