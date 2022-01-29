@@ -38,6 +38,7 @@ function Search() {
                                 dropoff:dropoff
                             }
                         }}
+                        passHref
             >
                 <ConfirmButtonContainer>
                     Comfirm Locations
