@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/eslint-plugin-next": "^12.0.9",
     "firebase": "^9.6.4",
     "mapbox-gl": "^2.6.1",
     "next": "12.0.7",
@@ -19,8 +20,6 @@
     "@typescript-eslint/parser": "^5.10.1",
     "autoprefixer": "^10.4.0",
     "eslint": "8.4.0",
-    "eslint-config-next": "12.0.7",
-    "eslint-plugin-react": "^7.28.0",
     "postcss": "^8.4.4",
     "tailwind-styled-components": "^2.0.3",
     "tailwindcss": "^2.2.19"
