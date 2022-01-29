@@ -1,28 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 import tw from "tailwind-styled-components"
+import Link from "next/link"
+useState
 function search() {
+    const [pickup, setpickup] = useState("");
+    const [dropoff, setdropoff] = useState("");
     return (
         <Wrapper>
+
             <ButtonContainer >
+                <Link href="/">
                 <BackButton src="https://img.icons8.com/ios-filled/50/000000/left.png" />
+                </Link>
             </ButtonContainer>
+
             <InputContainer>
                  <FromToIcons>
                      <Circle src="https://img.icons8.com/ios/50/9CA3AF/filled-circle.png"/>
                      <Line src="https://img.icons8.com/ios/50/9CA3AF/vertical-line.png" />
                      <Square src="https://img.icons8.com/windows/50/000000/square-full.png" />
                  </FromToIcons>
-           
-            <InputBoxes>
-                <Input placeholder="Enter Pickup Location"/>
-                <Input placeholder="Where to?"/>
-            </InputBoxes>
-            <PlusIcon src="https://img.icons8.com/ios/50/000000/plus-math.png"/>
+                <InputBoxes>
+                    <Input placeholder="Enter Pickup Location" value={pickup} onChange={(e)=>{setpickup(e.target.value)}}/>
+                    <Input placeholder="Where to?" value={dropoff} onChange={(e)=>{setdropoff(e.target.value)}}/>
+                </InputBoxes>
+                <PlusIcon src="https://img.icons8.com/ios/50/000000/plus-math.png"/>
             </InputContainer>
+
             <SavedPlaces>
                 <StarIcon src="https://img.icons8.com/ios-filled/50/ffffff/star--v1.png"/>
                 SavedPlaces
             </SavedPlaces>
+
+            <Link href={{pathname : "/confirm",
+                         query:{
+                                pickup:pickup,
+                                dropoff:dropoff
+                            }
+                        }}
+            >
+                <ConfirmButtonContainer>
+                    Comfirm Locations
+                </ConfirmButtonContainer>
+            </Link>
+
         </Wrapper>
     )
 }
@@ -33,8 +54,17 @@ const Wrapper=tw.div`
 bg-gray-200
 h-screen
 `
+const ConfirmButtonContainer=tw.div`
+bg-black
+text-white text-center
+mt-2
+mx-4 px-4 py-3 text-2xl
+cursor-pointer
+w-100
+`
+
 const ButtonContainer =tw.div`
-bg-white  px-4 `
+bg-white  px-4 cursor-pointer`
 const BackButton=tw.img`
 h-12
 `

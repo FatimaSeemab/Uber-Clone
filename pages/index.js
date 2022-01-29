@@ -1,12 +1,35 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import Map from './components/Map';
 import tw from "tailwind-styled-components"
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import {auth} from "../firebase"
+
 export default function Home() {
   
-
+  const router=useRouter()
+  const [user,setUser]=useState(null)
+  
+  useEffect(() => {
+    
+  
+    return onAuthStateChanged(auth,user => {
+    if(user)
+    {
+      setUser({
+        name:user.displayName,
+      })
+    }
+    else
+    {
+      setUser(null)
+      router.push("/login")
+    }      
+  }
+  )}, []);
   
   return (
    
@@ -16,10 +39,10 @@ export default function Home() {
        <Header>
          <UberLogo src="https://i.ibb.co/84stgjq/uber-technologies-new-20218114.jpg" />
          <Profile >
-           <Name>Fatima Seemab
+           <Name>{user && user.name}
 
            </Name>
-           <UserImage src="/Profile.jpg"/>
+           <UserImage src={user && user.photoUrl} onClick={()=>{signOut(auth)}}/>
          </Profile>
 
        </Header>
@@ -63,7 +86,7 @@ const Header=tw.div`flex justify-between items-center`
 const UberLogo=tw.img`h-28`
 const Profile=tw.div`flex items-center  `
 const Name=tw.div` mr-4 w-20 text-sm`
-const UserImage=tw.img`h-12 w-12 rounded-full border border-gray-200 p-px`
+const UserImage=tw.img`h-12 w-12 rounded-full border border-gray-200 p-px hover:cursor-pointer`
 const ActionButtons=tw.div`flex `
 const ActionButton=tw.div`
 bg-gray-200
