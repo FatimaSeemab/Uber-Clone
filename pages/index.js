@@ -14,8 +14,6 @@ export default function Home() {
   const [user,setUser]=useState(null)
   
   useEffect(() => {
-    
-  
     return onAuthStateChanged(auth,user => {
     if(user)
     {
@@ -29,7 +27,7 @@ export default function Home() {
       router.push("/login")
     }      
   }
-  )}, []);
+  )}, [router]);
   
   return (
    
