@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import tw from "tailwind-styled-components"
 import Link from "next/link"
 useState
-function search() {
+function Search() {
     const [pickup, setpickup] = useState("");
     const [dropoff, setdropoff] = useState("");
     return (
         <Wrapper>
 
             <ButtonContainer >
-                <Link href="/">
+                <Link href="/" passHref>
                 <BackButton src="https://img.icons8.com/ios-filled/50/000000/left.png" />
                 </Link>
             </ButtonContainer>
@@ -48,7 +48,7 @@ function search() {
     )
 }
 
-export default search
+export default Search
 
 const Wrapper=tw.div`
 bg-gray-200

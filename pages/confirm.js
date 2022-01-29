@@ -2,7 +2,7 @@
 import React from 'react';
 import tw from "tailwind-styled-components";
 import Link from "next/link";
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Map from './components/Map';
 import { useState } from 'react';
@@ -25,7 +25,7 @@ function Confirm() {
         .then(data=>{setPickupCoordinates(data.features[0].center)})
     }
 
-    const getDropoffCoordinates=(pickup)=>{
+    const getDropoffCoordinates=(dropoff)=>{
         const DropoffLocation=dropoff
         //Fetch Function
         fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${DropoffLocation}.json?`+
@@ -46,7 +46,7 @@ function Confirm() {
 
   return <Wrapper>
              <ButtonContainer>
-                 <Link href="/search">
+                 <Link href="/search" passHref>
                  <BackButton src="https://img.icons8.com/ios-filled/50/000000/left.png" />
                  </Link>
              </ButtonContainer>
